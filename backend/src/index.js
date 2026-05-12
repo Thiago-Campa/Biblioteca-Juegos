@@ -1,12 +1,20 @@
 import express from "express"
-
-import { PORT } from "./config/config.js"
-
+import { PORT, sequelize } from "./config/config.js"
 import gamesRoute from "./routes/routes.js"
+import Games from "./models/games/games.js"
 
 const app = express();
 
 app.use(express.json());
 app.use(gamesRoute);
-app.listen(PORT);
-console.log(`server listening on port ${PORT}`)
+
+sequelize.sync()
+    .then(() => {
+        console.log("Tablas Creadas ✅");
+        app.listen(PORT, () => {
+            console.log(`Servidor corriendo en http://localhost:${PORT}`);
+        });
+    })
+    .catch((error) => {
+        console.error("Error al sincronizar:", error);
+    });
