@@ -14,7 +14,7 @@ function Navbar() {
       <Link to="/login" style={{ color: "#fff" }}>Login</Link>
       <Link to="/register" style={{ color: "#fff" }}>Registro</Link>
     </nav>
-  );
+  ); 
 }
 
 export default Navbar;
