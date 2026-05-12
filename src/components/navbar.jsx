@@ -10,11 +10,11 @@ function Navbar() {
       color: "#fff"
     }}>
       <Link to="/" style={{ color: "#fff" }}>Inicio</Link>
-      <Link to="/juegos" style={{ color: "#fff" }}>Juegos</Link>
+      <Link to="/games" style={{ color: "#fff" }}>Juegos</Link>
       <Link to="/login" style={{ color: "#fff" }}>Login</Link>
       <Link to="/register" style={{ color: "#fff" }}>Registro</Link>
     </nav>
-  );
+  ); 
 }
 
 export default Navbar;
