@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Games from "./pages/games";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import AddGames from "./pages/addGames";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/games" element={<Games />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/add-games" element={<AddGames />} />
         </Routes>
       </Layout>
     </BrowserRouter>

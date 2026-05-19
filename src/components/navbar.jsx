@@ -9,6 +9,7 @@ function Navbar() {
     { to: "/games", label: "Juegos" },
     { to: "/login", label: "Login" },
     { to: "/register", label: "Registro" },
+    { to: "/add-games", label: "Agregar Juegos" },,
   ];
 
   return (
