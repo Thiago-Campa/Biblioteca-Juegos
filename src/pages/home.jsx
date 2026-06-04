@@ -1,219 +1,85 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import "./Home.css";
+import GameCard from "../components/gamecard";
+
+const juegosDestacados = [
+  {
+    title: "God of War",
+    description: "Una aventura épica llena de acción y mitología nórdica.",
+    image: "https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg",
+    genre: "Acción"
+  },
+  {
+    title: "Spider-Man",
+    description: "Balanceate por Nueva York y enfrentá villanos icónicos.",
+    image: "https://upload.wikimedia.org/wikipedia/en/e/e1/Spider-Man_PS4_cover.jpg",
+    genre: "Aventura"
+  },
+  {
+    title: "Hogwarts Legacy",
+    description: "Explorá el mundo mágico y convertite en un gran mago.",
+    image: "https://upload.wikimedia.org/wikipedia/en/f/fb/Hogwarts_legacyboxart.png",
+    genre: "RPG"
+  }
+];
 
 function Home() {
-  const navigate = useNavigate();
-
-  // CAMBIAR ENTRE true y false PARA PROBAR
-  const usuarioLogueado = false;
-
   const [busqueda, setBusqueda] = useState("");
+  const navigate = useNavigate();
 
   const manejarBusqueda = () => {
     if (busqueda.trim() === "") {
       alert("Escribí un juego");
       return;
     }
-
-    // VERIFICACION LOGIN
-    if (usuarioLogueado) {
-      navigate("/juegos");
-    } else {
-      navigate("/login");
-    }
+    navigate("/games");
   };
 
   return (
-    <div
-      style={{
-        backgroundColor: "#1f1f1f",
-        minHeight: "100vh",
-        padding: "30px",
-        color: "white",
-      }}
-    >
-      {/* HEADER */}
-      <div
-        style={{
-          backgroundColor: "#173b9c",
-          padding: "30px",
-          borderRadius: "10px",
-          textAlign: "center",
-          marginBottom: "40px",
-        }}
-      >
-        <h1 style={{ fontSize: "40px", marginBottom: "10px" }}>
-          Biblioteca Gamer
-        </h1>
+    <div className="home">
 
-        <p style={{ fontSize: "18px" }}>
-          Tu colección de videojuegos favorita
-        </p>
+      <div className="home__hero">
+        <div className="home__hero-glow" />
+        <h1 className="home__hero-title">
+          Biblioteca <span className="home__hero-accent">Gamer</span>
+        </h1>
+        <p className="home__hero-subtitle">Tu colección de videojuegos favorita</p>
+        <Link to="/games" className="home__hero-cta">Ver catálogo</Link>
       </div>
 
-      {/* BUSCADOR */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "10px",
-          marginBottom: "40px",
-        }}
-      >
+      <div className="home__search">
         <input
           type="text"
           placeholder="Buscar juego..."
           value={busqueda}
           onChange={(e) => setBusqueda(e.target.value)}
-          style={{
-            width: "300px",
-            padding: "12px",
-            borderRadius: "10px",
-            border: "none",
-            outline: "none",
-            fontSize: "16px",
-          }}
+          className="home__search-input"
         />
-
-        <button
-          onClick={manejarBusqueda}
-          style={{
-            padding: "12px 20px",
-            backgroundColor: "#00b894",
-            border: "none",
-            borderRadius: "10px",
-            color: "white",
-            cursor: "pointer",
-            fontWeight: "bold",
-          }}
-        >
+        <button onClick={manejarBusqueda} className="home__search-btn">
           Buscar
         </button>
       </div>
 
-      {/* JUEGOS DESTACADOS */}
-      <div
-        style={{
-          backgroundColor: "#173b9c",
-          padding: "25px",
-          borderRadius: "10px",
-          marginBottom: "40px",
-        }}
-      >
-        <h2
-          style={{
-            textAlign: "center",
-            marginBottom: "25px",
-          }}
-        >
-          Juegos Destacados
-        </h2>
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: "30px",
-            flexWrap: "wrap",
-          }}
-        >
-          {/* CARD */}
-          <div
-            style={{
-              backgroundColor: "#1f1f1f",
-              width: "220px",
-              borderRadius: "10px",
-              overflow: "hidden",
-              textAlign: "center",
-              paddingBottom: "15px",
-            }}
-          >
-            <img
-              src="https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg"
-              alt="God of War"
-              style={{
-                width: "100%",
-                height: "300px",
-                objectFit: "cover",
-              }}
+      <div className="home__section">
+        <h2 className="home__section-title">Juegos Destacados</h2>
+        <div className="home__cards">
+          {juegosDestacados.map((juego) => (
+            <GameCard
+              key={juego.title}
+              title={juego.title}
+              description={juego.description}
+              image={juego.image}
+              genre={juego.genre}
             />
-
-            <h3 style={{ marginTop: "15px" }}>God of War</h3>
-
-            <p style={{ padding: "0 10px", fontSize: "14px" }}>
-              Una aventura épica llena de acción y mitología.
-            </p>
-          </div>
-
-          {/* CARD */}
-          <div
-            style={{
-              backgroundColor: "#1f1f1f",
-              width: "220px",
-              borderRadius: "10px",
-              overflow: "hidden",
-              textAlign: "center",
-              paddingBottom: "15px",
-            }}
-          >
-            <img
-              src="https://upload.wikimedia.org/wikipedia/en/e/e1/Spider-Man_PS4_cover.jpg"
-              alt="Spider-Man"
-              style={{
-                width: "100%",
-                height: "300px",
-                objectFit: "cover",
-              }}
-            />
-
-            <h3 style={{ marginTop: "15px" }}>Spider-Man</h3>
-
-            <p style={{ padding: "0 10px", fontSize: "14px" }}>
-              Balanceate por Nueva York y enfrentá villanos icónicos.
-            </p>
-          </div>
-
-          {/* CARD */}
-          <div
-            style={{
-              backgroundColor: "#1f1f1f",
-              width: "220px",
-              borderRadius: "10px",
-              overflow: "hidden",
-              textAlign: "center",
-              paddingBottom: "15px",
-            }}
-          >
-            <img
-              src="https://upload.wikimedia.org/wikipedia/en/f/fb/Hogwarts_legacyboxart.png"
-              alt="Hogwarts Legacy"
-              style={{
-                width: "100%",
-                height: "300px",
-                objectFit: "cover",
-              }}
-            />
-
-            <h3 style={{ marginTop: "15px" }}>Hogwarts Legacy</h3>
-
-            <p style={{ padding: "0 10px", fontSize: "14px" }}>
-              Explorá el mundo mágico y convertite en un gran mago.
-            </p>
-          </div>
+          ))}
         </div>
       </div>
 
-      {/* FOOTER */}
-      <div
-        style={{
-          backgroundColor: "#173b9c",
-          padding: "20px",
-          borderRadius: "10px",
-          textAlign: "center",
-        }}
-      >
+      <div className="home__footer">
         <p>Proyecto Biblioteca Gamer - React</p>
       </div>
+
     </div>
   );
 }
