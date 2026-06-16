@@ -32,7 +32,11 @@ const Game = sequelize.define("Game", {
     status: {
         type: DataTypes.ENUM("Instalado", "Descargar"),
         allowNull: false
-    }
+    },
+    image: {
+    type: DataTypes.STRING,
+    allowNull: true,
+}
 })
 
 export default Game;
