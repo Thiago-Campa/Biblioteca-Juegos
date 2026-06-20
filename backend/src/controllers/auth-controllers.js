@@ -34,9 +34,9 @@ export const login = async (req, res) => {
     if(!comparison)
         return(res.status(401).send({message: "Email y/o contraseña incorrecta"}));
 
-    const secretKey = "key-secreta2026";
+    const secretKey = "1234";
 
-    const token = jwt.sign({email}, secretKey, {expiresIn: "1h"});
+    const token = jwt.sign( {email, role: user.role}, secretKey, {expiresIn: "1h"});
 
     return res.json(token);
 }
