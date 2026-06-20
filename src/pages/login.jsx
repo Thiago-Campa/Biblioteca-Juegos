@@ -8,24 +8,29 @@ function Login() {
         const [password, setPassword] = useState("")
         const {setToken} = useAuth()
         const navigate = useNavigate()
+        const [error, setError] = useState("")
 
-        const handleLogin = async (e) =>{
-          e.preventDefault()
+        const handleLogin = async (e) => {
+            e.preventDefault()
 
-          const response = await fetch("http://localhost:3000/auth/login", {
-            method: "POST",
-            headers:{
-              "content-type": ("application/json")
-            },
-            body: JSON.stringify({email, password})
-          })
+            const response = await fetch("http://localhost:3000/auth/login", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify({ email, password })
+            })
 
-          const data = await response.json()
-          console.log(data)
+            const data = await response.json()
 
-          setToken(data)
+            if (!response.ok) {
+                setError(data.mensaje || data.message || "Error al iniciar sesión")
+                return
+            }
 
-          navigate("/")
+            setError("")
+            setToken(data)
+            navigate("/")
         }
 
 
@@ -59,6 +64,7 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {error && <p className="auth__error">{error}</p>}
         </div>
 
         <button className="auth__btn" onClick={handleLogin}>Ingresar</button>

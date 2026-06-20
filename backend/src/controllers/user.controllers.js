@@ -14,17 +14,26 @@ export const getbyID = async (req, res) => {
 }
 
 export const updateUsers = async (req, res) => {
-    const {id} = req.params
-    const {userName, email, password, role} = req.body
+    const { id } = req.params
+    const userActual = await User.findByPk(id)
+
+    if (!userActual) {
+        return res.status(404).json({ mensaje: "Usuario no encontrado" })
+    }
+
+    const userName = req.body.userName ?? userActual.userName
+    const email = req.body.email ?? userActual.email
+    const password = req.body.password ?? userActual.password
+    const role = req.body.role ?? userActual.role
 
     await User.update(
-        {userName, email, password, role},
-        {where: {id: id}}
+        { userName, email, password, role },
+        { where: { id } }
     );
 
-    const updateUser = await User.findByPk(id)
+    const updatedUser = await User.findByPk(id)
 
-    return res.json(updateUser)
+    return res.json(updatedUser)
 }
 
 export const deleteUser = async (req, res) => {

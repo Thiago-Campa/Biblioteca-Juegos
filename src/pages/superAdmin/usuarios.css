@@ -1,0 +1,77 @@
+.users-page {
+  background-color: #0b0f1a;
+  min-height: 100vh;
+  color: #f0f4ff;
+  padding: 50px 40px;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.users-title {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0 0 30px;
+  border-left: 3px solid #3b82f6;
+  padding-left: 14px;
+}
+
+.users-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 700px;
+}
+
+.users-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #131b2e;
+  border: 1px solid #1a2540;
+  border-radius: 10px;
+  padding: 14px 18px;
+}
+
+.users-info {
+  flex: 1;
+}
+
+.users-name {
+  margin: 0;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.users-email {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #7a9bbf;
+}
+
+.users-select {
+  background: #1a2540;
+  color: #f0f4ff;
+  border: 1px solid #2a3a5c;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.users-btn-delete {
+  background: transparent;
+  color: #ff6b6b;
+  border: 1px solid #ff6b6b;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.users-btn-delete:hover {
+  background: rgba(255, 107, 107, 0.1);
+}

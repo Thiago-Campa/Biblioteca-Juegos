@@ -135,3 +135,10 @@
     border-color: #3b82f6;
     color: #f0f4ff;
 }
+
+.auth__error {
+    color: #ff6b6b;
+    font-size: 13px;
+    margin-top: 6px;
+    margin-bottom: 0;
+}
