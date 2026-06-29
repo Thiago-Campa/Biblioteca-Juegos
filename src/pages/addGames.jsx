@@ -25,10 +25,10 @@ function AddGames() {
 
     const validar = () => {
         const nuevosErrores = {};
-        if (!form.title.trim()) nuevosErrores.nombre = "El nombre es obligatorio.";
-        if (!form.developer.trim()) nuevosErrores.creador = "El creador es obligatorio.";
+        if (!form.title.trim()) nuevosErrores.title = "El nombre es obligatorio.";
+        if (!form.developer.trim()) nuevosErrores.developer = "El creador es obligatorio.";
         if (!form.description.trim()) nuevosErrores.description = "La descripción es obligatoria.";
-        if (!form.gender) nuevosErrores.genero = "Seleccioná un género.";
+        if (!form.gender) nuevosErrores.gender = "Seleccioná un género.";
         return nuevosErrores;
     };
 

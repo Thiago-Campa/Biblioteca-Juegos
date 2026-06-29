@@ -1,38 +1,34 @@
-import { DataTypes, INTEGER } from "sequelize";
+import { DataTypes } from "sequelize";
 import { sequelize } from "../../config/config.js";
 
-const User = sequelize.define("User" , {
-    id:{
+const User = sequelize.define("User", {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true,        
+        autoIncrement: true,
     },
-
-    userName:{
+    userName: {
         type: DataTypes.STRING,
-        allownull: false,
+        allowNull: false,
         unique: true,
     },
-
-    email:{
+    email: {
         type: DataTypes.STRING,
-        allowNull : false,
+        allowNull: false,
         unique: true,
-        validate : {
+        validate: {
             isEmail: true
         }
     },
-
-    password:{
+    password: {
         type: DataTypes.STRING,
-        allownull: false,
+        allowNull: false,
     },
-
-    role:{
-    type: DataTypes.ENUM("user", "admin", "superadmin"),
-    allowNull: false,
-    defaultValue: "user"      
+    role: {
+        type: DataTypes.ENUM("user", "admin", "superadmin"),
+        allowNull: false,
+        defaultValue: "user"
     }
-})
+});
 
 export default User;
