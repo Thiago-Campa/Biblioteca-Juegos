@@ -3,9 +3,6 @@ import "./Games.css";
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/authContext";
 
-
-
-
 const GENRES = ["Todos", "Acción", "Aventura", "RPG"];
 
 function Games() {
